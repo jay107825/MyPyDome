@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>gaoxiaoyu</title>
+    <style>
+        body {
+            background-color: black;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 40px;
+        }
+        .firework {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #de0638;
+            border-radius: 80%;
+            animation: explode 5s infinite;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(20);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="/html/img_1.png" alt="图片1">
+<!--    <img src="/html/img_1.png" alt="图片2">-->
+    <script>
+
+        var fireworks = [];
+        var numFireworks = 50; // 设置烟花数量
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+
+            // 循环播放图片效果
+        var images = document.getElementsByTagName('img');
+        var index = 0;
+        setInterval(function() {
+          images[index].style.opacity = 0;
+          index = (index + 1) % images.length;
+          images[index].style.opacity = 2;
+          updateFireworks()
+        }, 5000); // 每3秒切换一次图片
+
+
+
+
+        // 创建烟花元素并设置初始位置和速度
+        for (var i = 0; i < numFireworks; i++) {
+            var firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = Math.random() * screenWidth + 'px';
+            firework.style.top = Math.random() * screenHeight + 'px';
+            firework.style.animationDuration = Math.random() * 3 + 2 + 's'; // 设置烟花持续时间，范围为2-5秒
+            fireworks.push(firework);
+            document.body.appendChild(firework);
+
+        }
+
+        // 更新烟花位置和动画效果
+        function updateFireworks() {
+            for (var i = 0; i < fireworks.length; i++) {
+                var firework = fireworks[i];
+                var animationDuration = parseFloat(firework.style.animationDuration); // 获取当前烟花的动画持续时间
+                if (animationDuration <= 1) { // 当动画持续时间小于等于0.5秒时，隐藏并删除烟花元素
+                    firework.style.display = 'none';
+                    fireworks.splice(i, 1); // 从数组中删除烟花元素
+                    i--; // 因为删除了一个元素，所以需要将索引减1以保证下次循环能正确处理下一个元素
+                } else { // 当动画持续时间大于0.5秒时，更新烟花位置和动画效果
+                    var left = parseFloat(firework.style.left); // 获取当前烟花的左侧位置
+                    var top = parseFloat(firework.style.top); // 获取当前烟花的顶部位置
+                    var speed = animationDuration / 10; // 根据动画持续时间计算出烟花的速度，单位为像素/帧，这里假设每秒60帧进行计算，因此动画持续时间除以10即可得到速度值
+                    left += speed * Math.sin(Date.now() / 1000); // 根据当前时间和速度值计算出烟花的移动方向和距离，这里使用正弦函数实现一个简单的随机移动效果，单位为像素，可以根据需要调整参数和函数实现更复杂的移动效果
+                    top += speed * Math.cos(Date.now() / 1000); // 同上，使用余弦函数实现垂直方向的随机移动效果，单位为像素，可以根据需要调整参数和函数实现更复杂的移动效果
+                    firework.style.left = left + 'px'; // 更新烟花的左侧位置和顶部位置，单位为像素，需要根据实际屏幕大小进行调整，以确保烟花在屏幕上显示时看起来合适的大小和移动效果
+                }
+            }
+        }
+    </script>

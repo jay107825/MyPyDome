@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>love</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      animation: slideshow 10s infinite;
+    }
+
+    @keyframes slideshow {
+      0% { opacity: 0; }
+      20% { opacity: 1; }
+      33% { opacity: 1; }
+      53% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>亲爱的[对方姓名]，我喜欢你！</h1>
+
+  <p>这里放上你想说的话，可以是一段文字，也可以是一首诗，或者一封情书。</p>
+
+  <img src="/html/img.png" alt="图片1">
+<!--  <img src="/html/img.png" alt="图片2">-->
+<!--  <img src="path/to/image3.jpg" alt="图片3">-->
+
+  <script>
+    // 循环播放图片效果
+    var images = document.getElementsByTagName('img');
+    var index = 0;
+    setInterval(function() {
+      images[index].style.opacity = 0;
+      index = (index + 1) % images.length;
+      images[index].style.opacity = 1;
+    }, 3000); // 每3秒切换一次图片
+  </script>
+</body>
+</html>
