@@ -8,3 +8,6 @@ webdriver-manager==3.8.2
 
 pypdf2~=3.0.1
 selenium~=4.11.2
+pdfplumber~=0.10.2
+py~=1.11.0
+jsonpath~=0.82.2
