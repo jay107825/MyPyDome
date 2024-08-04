@@ -34,3 +34,21 @@ if __name__ == '__main__':
 
     path = r"/Users/Shared/QI-ANXIN Tianqing/Config/setting/software_qi-anxin-tianqing_config_base.json"
     update_json(path)
+
+
+    #     "client_pwd_check": {
+    #         "prevent_uninstall": {
+    #             "mode": {
+    #                 "server": "verification_code_or_static_pwd",
+    #                 "modifiable": "0"
+    #             },
+    #             "enabled": {
+    #                 "server": "0",
+    #                 "modifiable": "0"
+    #             },
+    #             "static_pwd": {
+    #                 "server": "6aede78b6a20a78a3e0abbe21d00ec4a5dc0b3fd0e8e8a91308887488f0baf1e",
+    #                 "modifiable": "0"
+    #             }
+    #         },
+    # 卸载
